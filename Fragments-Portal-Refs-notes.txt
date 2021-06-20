@@ -1,0 +1,52 @@
+Limitations of JSX:-
+You can not return more than one "root" JSX element(you also can not store more than one "root" JSX element in a variable).
+
+JSX code gets transformmed to React.createElement();
+
+Example:-
+//This is not valid
+return(
+  <h2>Hi There!</h2>
+  <p>This does not work :-(<p/>
+);
+
+//This is also not valid
+return(
+ React.createElement('h2',{},'Hi There!')
+ React.createElement('p',{],'This does not work :-('
+);
+
+Solution:-
+
+return(
+  <div>
+   <h2>Hi There!</h2>
+   <p>This does not work :-(<p/>
+  </div>
+);
+
+In bigger apps ypu can easily end up with tons of unnecessary <div>s (or other elements) which add no semantic meaning or structure to the page but are only there because of React's/JSX' requirement.
+
+Problem:- This is not a good practice to add too many HTML elements and also this makes ur app slower.
+
+The Solution of the above problem is by using Wrapper(Refer the Helpers folder).
+
+We can also use Fragments for the same purpose!
+                                                           
+return(                                                      
+  <React.Fragment>                  =====> This one always works.!
+   <h2>Hi There!</h2>               
+   <p>This does not work :-(<p/>
+  </React.Fragment>
+);
+   OR
+
+return(                                                      
+  <>                                    
+   <h2>Hi There!</h2>                 =====> This one depends upon ur project configuration.!
+   <p>This does not work :-(<p/>
+  </>
+);
+
+--> It is an empty wrapper component: it does not render any real HTML element to the DOM. But it fulfills React's/JSX' requirement.
+   

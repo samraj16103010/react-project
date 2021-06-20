@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import Card from '../UI/Card';
 import classes from './AddUser.module.css';
 import Button from '../UI/Button';
 import ErrorModal from '../UI/ErrorModal';
+import Wrapper from '../Helpers/Wrapper';
 const AddUser = (props) => {
     const [username,setUsername] = useState('');
     const [age,setAge] = useState('');
@@ -37,18 +38,18 @@ const AddUser = (props) => {
 
    return(
       
-       <div>
+       <Wrapper>
            {error && <ErrorModal title = {error.title} message = {error.message} onConfirm = {errorHandler}/>}
            <Card className = {classes.input}>
-            <form onSubmit = {addUserHandler}>
-                <label htmlFor = "username">Username</label>
-                <input type = "text" id = "username" value = {username} onChange = {(event) => setUsername(event.target.value)}></input>
-                <label htmlFor = "age">Age(in years)</label>
-                <input type = "number" id = "age" value = {age} onChange = {(event) => setAge(event.target.value)}></input>
-                <Button type = "submit">Add User</Button>
-            </form>
-       </Card>
-       </div>
+                <form onSubmit = {addUserHandler}>
+                    <label htmlFor = "username">Username</label>
+                    <input type = "text" id = "username" value = {username} onChange = {(event) => setUsername(event.target.value)}></input>
+                    <label htmlFor = "age">Age(in years)</label>
+                    <input type = "number" id = "age" value = {age} onChange = {(event) => setAge(event.target.value)}></input>
+                    <Button type = "submit">Add User</Button>
+                </form>
+            </Card>
+       </Wrapper>
    );
 }
 
